@@ -1,6 +1,7 @@
 version: '3'
 services:
   php:
+    container_name: php
     image: "jolka/jolka_php"
     ports:
      - "8080:80"
@@ -10,7 +11,9 @@ services:
      - mysql
     links:
      - mysql:db
+
   pma:
+    container_name: pma
     image: "jolka/jolka_pma"
     ports:
      - "8081:80"
@@ -18,12 +21,3 @@ services:
      - mysql
     links:
      - mysql:db
-  mysql:
-    image: "mysql"
-    volumes:
-     - dbPanda:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=jolka
-
-  volumes:
-    dbPanda:
